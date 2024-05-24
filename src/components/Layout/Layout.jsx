@@ -1,15 +1,5 @@
-import { Suspense } from "react";
-import AppBar from "../AppBar/AppBar";
-
 const Layout = ({ children }) => {
-  return (
-    <div>
-      <AppBar />
-      <main>
-        <Suspense fallback={null}>{children}</Suspense>
-      </main>
-    </div>
-  );
+  return <main>{children}</main>;
 };
 
 export default Layout;

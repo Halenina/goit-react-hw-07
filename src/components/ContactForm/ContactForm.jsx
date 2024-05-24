@@ -1,10 +1,11 @@
+
 import { Field, Form, Formik } from "formik";
 import { ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsSlice";
 
 import css from "./ContactForm.module.css";
+import { addContact } from "../../redux/contactsOps";
 
 const PhonebookSchema = Yup.object().shape({
   name: Yup.string()
@@ -13,8 +14,8 @@ const PhonebookSchema = Yup.object().shape({
     .required("Name is required!"),
   number: Yup.string()
     .matches(
-      /^\d{3}-\d{2}-\d{2}$/,
-      "Invalid phone number format (e.g. 123-45-67)"
+      /^(\d{3}-?\d{2}-?\d{2}|\d{7,15})$/,
+      "Invalid phone number format (e.g. 123-45-67 or 1234567)"
     )
     .min(7, "The number must contain at least 7 digits!")
     .max(15, "The number must contain no more than 15 characters!")
